@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 
-
-
-const AddCharity = () => {
+const AddTask = () => {
   const [form] = Form.useForm();
   
 
@@ -17,10 +15,9 @@ const AddCharity = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <div className="my-10 my-10 w-2/3 px-10 py-5 shadow-xl">
+    <div className="my-10 my-10 w-2/3 px-10 py-5 shadow-xl">
       <Form
        form={form}
        initialValues={{}}
@@ -31,22 +28,46 @@ const AddCharity = () => {
        className=""
       >
         <Form.Item 
-        label="Name"
-         name="name"
+        label="VolunteerId"
+         name="volunteer"
          rules={[
           {
             required: true,
-            message: "Please input your name of Charity!",
+            message: "Please input your name of Volunteers!",
           },
         ]}
         
         >
-          <Input placeholder="Name" />
+          <Input placeholder="VolunteersId" />
         </Form.Item>
         <Form.Item
-          label="Description"
-          name="description"
+          label="Task"
+          name="task"
           rules={[
+            {
+              required: true,
+              message: "Please input your task!",
+            },
+          ]}
+        >
+          <Input placeholder="Task" />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+              message: "Please input your status!",
+            },
+          ]}
+        >
+          <Input  placeholder="Status" />
+        </Form.Item>
+        <Form.Item 
+        label="Description"
+        name="description"
+        rules={[
             {
               required: true,
               message: "Please input your description!",
@@ -55,44 +76,8 @@ const AddCharity = () => {
         >
           <Input placeholder="Description" />
         </Form.Item>
-        <Form.Item
-          label="Category"
-          name="category"
-          rules={[
-            {
-              required: true,
-              message: "Please input your category!",
-            },
-          ]}
-        >
-          <Input  placeholder="Category" />
-        </Form.Item>
-        <Form.Item 
-        label="Email"
-        name="email"
-        rules={[
-            {
-              required: true,
-              message: "Please input your email!",
-            },
-          ]}
-        >
-          <Input placeholder="Email" />
-        </Form.Item>
-        <Form.Item 
-        label="Address"
-        name="address"
-         >
-          <Input placeholder="Address" />
-        </Form.Item>
-        <Form.Item 
-        label="Phone"
-         name="phone"
-        >
-          <Input placeholder="Phone" />
-        </Form.Item>
         <Form.Item >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" >
             Submit
           </Button>
         </Form.Item>
@@ -102,4 +87,4 @@ const AddCharity = () => {
   );
 };
 
-export default AddCharity;
+export default AddTask;
