@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
+import { useAddUserMutation } from "../../services/user/user.service";
 
 
 const AddEditUser = () => {
+  
   const [form] = Form.useForm();
   
+
+  const [addUser, { data, isError, isFetching, isLoading, isSuccess, error }] = useAddUserMutation()
+  const allUsers = data?.data
+
+
 
 
 
   const onFinish = (values) => {
     console.log("values: ", values);
-    // dispatch(login(values));
+    addUser(values)
   };
 
   const onFinishFailed = (errorInfo) => {
