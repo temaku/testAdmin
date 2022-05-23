@@ -7,7 +7,7 @@ import {
   Login,
   User,
   Event,
-  Fundraise
+  Task
 } from "../components";
 
 import { Routes, Route } from "react-router-dom";
@@ -19,8 +19,11 @@ import AddEditUser from "../components/users/AddUserForm";
 import EventIndexPage from "../components/events/eventslayout";
 import AddCharity from "../components/charity/AddCharityForm";
 import AddEvent from "../components/events/addEvents";
-import AddFundraise from "../components/fundraising/AddFundraise"
-import FundraisingIndexPage from "../components/fundraising/FundraisingLayout";
+import { Fundraise } from "../components/fundraising/fundraise";
+import AddFundraise from "../components/fundraising/addFundraise"
+import  FundraiseIndexPage from "../components/fundraising/fundraiselayout"
+import TaskIndexPage from "../components/tasks/tasklayout"
+import AddTask from "../components/tasks/AddTaskForm";
 
 
 
@@ -46,9 +49,13 @@ export const MainRoutes = () => {
           <Route path="add-event" element={<AddEvent />}/>
         </Route>
 
-        <Route path="/fundraising" element={<FundraisingIndexPage />}>
+        <Route path="/fundraising" element={<FundraiseIndexPage />}>
           <Route index element={<Fundraise />}></Route>
           <Route path="add-fundraise" element={<AddFundraise />}/>
+        </Route>
+        <Route path="/tasks" element={<TaskIndexPage />}>
+          <Route index element={<Task />}></Route>
+          <Route path="add-task" element={<AddTask />}/>
         </Route>
 
         

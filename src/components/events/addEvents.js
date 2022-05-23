@@ -1,23 +1,13 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+
 
 
 const AddEvent = () => {
   const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState("horizontal");
-  const [loading, setLoading] = React.useState(false);
-  const navigate = useNavigate();
+  
 
-  const dispatch = useDispatch();
 
-  const { user, isError, isSuccess, isLoading, message } = useSelector(
-    (state) => state.auth
-  );
-  const onFormLayoutChange = ({ layout }) => {
-    setFormLayout(layout);
-  };
 
   const onFinish = (values) => {
     console.log("values: ", values);
@@ -28,39 +18,16 @@ const AddEvent = () => {
     console.log("Failed:", errorInfo);
   };
 
-  const formItemLayout =
-    formLayout === "horizontal"
-      ? {
-          labelCol: {
-            span: 4,
-          },
-          wrapperCol: {
-            span: 14,
-          },
-        }
-      : null;
-  const buttonItemLayout =
-    formLayout === "horizontal"
-      ? {
-          wrapperCol: {
-            span: 14,
-            offset: 4,
-          },
-        }
-      : null;
   return (
-    <div className="my-10">
+    <div className="flex flex-col items-center justify-center w-full">
+      <div className="my-10 my-10 w-2/3 px-10 py-5 shadow-xl">
       <Form
-        {...formItemLayout}
-        layout={formLayout}
         form={form}
-        initialValues={{
-          layout: formLayout,
-        }}
-        onValuesChange={onFormLayoutChange}
+        initialValues={{}}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        layout="vertical"
         className=""
       >
         <Form.Item 
@@ -112,12 +79,13 @@ const AddEvent = () => {
         >
           <Input placeholder="Organizer" />
         </Form.Item>
-        <Form.Item {...buttonItemLayout}>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
+        <Form.Item >
+          <Button type="primary" htmlType="submit" >
             Submit
           </Button>
         </Form.Item>
       </Form>
+    </div>
     </div>
   );
 };
