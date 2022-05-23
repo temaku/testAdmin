@@ -7,6 +7,7 @@ import {
   Login,
   User,
   Event,
+  Fundraise
 } from "../components";
 
 import { Routes, Route } from "react-router-dom";
@@ -18,9 +19,8 @@ import AddEditUser from "../components/users/AddUserForm";
 import EventIndexPage from "../components/events/eventslayout";
 import AddCharity from "../components/charity/AddCharityForm";
 import AddEvent from "../components/events/addEvents";
-import { Fundraise } from "../components/fundraising/fundraise";
-import AddFundraise from "../components/fundraising/addFundraise"
-import  FundraiseIndexPage from "../components/fundraising/fundraiselayout"
+import AddFundraise from "../components/fundraising/AddFundraise"
+import FundraisingIndexPage from "../components/fundraising/FundraisingLayout";
 
 
 
@@ -46,7 +46,7 @@ export const MainRoutes = () => {
           <Route path="add-event" element={<AddEvent />}/>
         </Route>
 
-        <Route path="/fundraising" element={<FundraiseIndexPage />}>
+        <Route path="/fundraising" element={<FundraisingIndexPage />}>
           <Route index element={<Fundraise />}></Route>
           <Route path="add-fundraise" element={<AddFundraise />}/>
         </Route>

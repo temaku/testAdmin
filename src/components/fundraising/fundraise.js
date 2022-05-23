@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export const Fundraise = () => {
     return (
-        
+
             <div className='flex flex-col'>
 
                 <div className='flex items-center justify-between flex-wrap-reverse mt-5 bg-gray-200 px-5 py-3'>
@@ -15,18 +15,16 @@ export const Fundraise = () => {
                     </div>
 
                     <div className='mt-4  md:justify-end'>
-                    <Link to="/fundraising/add-fundraise">
-                      <Button type="primary" className="px-7">
-                         Add Fundraise
-                    </Button>
-                    </Link>
+                        <Link to="/fundraising/add-fundraise">
+                            <Button type="primary" className="px-7">
+                                Add Fundraise
+                            </Button>
+                        </Link>
                     </div>
 
                 </div>
 
                 <FundraiseDataTable />
             </div>
-
-        
     )
 }

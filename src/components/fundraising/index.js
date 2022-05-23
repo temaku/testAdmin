@@ -1,3 +1,3 @@
 
-export {Fundraise} from './fundraise'
+export {Fundraise} from './Fundraise'
 export {FundraiseDataTable } from './FundraiseDataTable'

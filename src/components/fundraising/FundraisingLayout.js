@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Home } from "../Home";
 
 
-const FundraiseIndexPage = (props) => {
+const FundraisingIndexPage = (props) => {
   return (
     <Home>
       <Outlet />
@@ -11,4 +11,4 @@ const FundraiseIndexPage = (props) => {
   );
 };
 
-export default  FundraiseIndexPage;
+export default  FundraisingIndexPage;
