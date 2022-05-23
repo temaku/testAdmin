@@ -1,15 +1,15 @@
 import { Table } from 'antd'
 import React from 'react'
 
-export const EventDataTable = () => {
+export const FundraiseDataTable = () => {
 
     const eventsData = [
         {
             id: 1,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
 
 
         },
@@ -17,71 +17,80 @@ export const EventDataTable = () => {
             id: 2,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 3,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 4,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 5,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 6,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 7,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 8,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 9,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 10,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
+
         },
         {
             id: 11,
             title:"Helping other",
             description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
+            amount:"5000",
+            data_created:"2020/12/04"
         }
     ]
 
@@ -97,14 +106,14 @@ export const EventDataTable = () => {
             dataIndex: "description"
         },
         {
-            key: "date",
-            title: "Date",
-            dataIndex: "date"
+            key: "amount",
+            title: "Amount",
+            dataIndex: "amount"
         },
         {
-            key: "organizer",
-            title: "Organizer",
-            dataIndex: "organizer"
+            key: "data_created",
+            title: "Date_created",
+            dataIndex: "data_created"
         },
        
     ]

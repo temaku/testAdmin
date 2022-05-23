@@ -91,7 +91,7 @@ export const Home = (props) => {
 
                 <Layout className="site-layout" >
                     <Content
-                        className="site-layout-background mt-10 py-2 w-full body_content"
+                        className="site-layout-background my-10 py-10 w-full body_content"
                     >
                         {props.children}
                     </Content>

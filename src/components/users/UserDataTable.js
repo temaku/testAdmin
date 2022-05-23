@@ -12,121 +12,110 @@ export const UserDataTable = () => {
             id: 1,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 2,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 3,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 4,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 5,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 6,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 7,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 8,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 9,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 10,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         },
         {
             id: 11,
             userName: "John Doe",
             email: "email@address.org",
-            countDonations: "$100",
-            totalDonations: "$500",
+            password:"pass1234",
             phone: "0958987458",
-            status: "Active",
             address: "Bole, Addis Ababa",
+            role:"donor",
             createdAt: "12-05-2022"
         }
     ]
@@ -143,14 +132,9 @@ export const UserDataTable = () => {
             dataIndex: "email"
         },
         {
-            key: "countDonations",
-            title: "Count Donations",
-            dataIndex: "countDonations"
-        },
-        {
-            key: "totalDonations",
-            title: "Total Donations",
-            dataIndex: "totalDonations"
+            key: "password",
+            title: "Password",
+            dataIndex: "password"
         },
         {
             key: "phone",
@@ -158,23 +142,19 @@ export const UserDataTable = () => {
             dataIndex: "phone"
         },
         {
-            key: "status",
-            title: "Status",
-            dataIndex: "status",
-            render: (status) => (
-                <div className='flex'>
-                    <p className='text-green-600'>{status}</p>
-                </div>
-            )
-        },
-        {
             key: "address",
             title: "Address",
             dataIndex: "address"
         },
+       
+        {
+            key: "role",
+            title: "Role",
+            dataIndex: "role"
+        },
         {
             key: "createdAt",
-            title: "Cteated At",
+            title: "Created At",
             dataIndex: "createdAt"
         },
     ]
