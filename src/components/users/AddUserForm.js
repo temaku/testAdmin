@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Spin } from "antd";
+import { Form, Input, Button, Spin, Select } from "antd";
 import { useAddUserMutation } from "../../services/user/user.service";
 
 import { ToastContainer, toast } from 'react-toastify'
@@ -14,15 +14,17 @@ const AddEditUser = () => {
 
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
-
+  const { Option } = Select;
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
 
   const [addUser, { data, isError, isFetching, isLoading, isSuccess, error }] = useAddUserMutation()
   const addedUser = data?.data
 
   useEffect(() => {
-    if (isSuccess && addedUser) {
+    if (isSuccess) {
       toast.success("Volunteer added successfully!")
+      form.resetFields()
     }
   }, [isSuccess])
 
@@ -30,12 +32,7 @@ const AddEditUser = () => {
 
 
   const onFinish = (values) => {
-    console.log("values: ", values);
-    const body = {
-      ...values,
-      role: 'volunteer'
-    }
-    addUser(body)
+    addUser(values)
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -119,25 +116,34 @@ const AddEditUser = () => {
             >
               <Input placeholder="Address" />
             </Form.Item>
-            <Form.Item
-              label="Role"
-              name="role"
+            
+            <Form.Item 
+              name="role" 
+              label="Role" 
               rules={[
                 {
                   required: true,
                   message: "Please input your role!",
                 },
               ]}
-            >
-              <Input placeholder="Role" />
-            </Form.Item>
-            <Form.Item >
-              <Button 
-              type="primary" 
-              htmlType="submit"
-              loading={isLoading}
+             >
+              <Select
+                placeholder="Select a role"
+                allowClear
               >
-                    Submit
+                <Option value="donor">Donor</Option>
+                <Option value="volunteers">Volunteer</Option>
+              </Select>
+            </Form.Item>
+
+
+            <Form.Item >
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={isLoading}
+              >
+                Submit
               </Button>
             </Form.Item>
           </Form>
