@@ -1,100 +1,19 @@
 import { Table } from 'antd'
 import React from 'react'
-
+import { useGetAllFundraisessQuery } from '../../services/fundraise/fundraise.service'
 export const FundraiseDataTable = () => {
 
-    const eventsData = [
-        {
-            id: 1,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-
-        },
-        {
-            id: 2,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 3,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 4,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 5,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 6,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 7,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 8,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 9,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 10,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-
-        },
-        {
-            id: 11,
-            title:"Helping other",
-            description:"this is description",
-            amount:"5000",
-            data_created:"2020/12/04"
-        }
-    ]
+    const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllFundraisessQuery();
+    const allFundrasings = data?.data
+    console.log("allFundrasings: ", allFundrasings)
+    
 
     const columns = [
+        {
+            key: "_id",
+            title: "Fundraise Id",
+            dataIndex: "_id"
+        },
         {
             key: "title",
             title: "Title",
@@ -111,9 +30,9 @@ export const FundraiseDataTable = () => {
             dataIndex: "amount"
         },
         {
-            key: "data_created",
+            key: "createdAt",
             title: "Date_created",
-            dataIndex: "data_created"
+            dataIndex: "createdAt"
         },
        
     ]
@@ -121,9 +40,25 @@ export const FundraiseDataTable = () => {
     return (
         <div className='flex flex-col'>
 
+            {
+                isError &&
+                <div className='flex mt-3'>
+                    <p className='text-red-500 text-md font-bold mx-3'>
+                        {error?.name || error?.status}
+                    </p>
+                    <p className='text-red-500 text-md font-bold'>
+                        {error?.message || error?.data.message}
+                    </p>
+                </div>
+            }
 
             <div className='mt-8'>
-                <Table dataSource={eventsData} columns={columns} pagination={true} rowKey="id" />
+                <Table 
+                dataSource={allFundrasings} 
+                columns={columns} 
+                pagination={true} 
+                loading={isLoading}
+                rowKey="id" />
             </div>
 
         </div>

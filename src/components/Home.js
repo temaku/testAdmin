@@ -105,11 +105,11 @@ export const Home = (props) => {
                             Budget Allocation
                         </NavLink>
                     </Menu.Item>
-                    <Menu.Item key="/generateReport" icon={<AiOutlineSetting />}>
+                    {/* <Menu.Item key="/generateReport" icon={<AiOutlineSetting />}>
                         <NavLink to="/generateReport" className='nav-text'>
                             GenerateReport Report
                         </NavLink>
-                    </Menu.Item>
+                    </Menu.Item> */}
                     </Menu>
                     <div className='absolute bottom-4 left-0 w-full h-20'>
                         <span className=' flex items-center ml-4 mt-2 cursor-pointer' onClick={() => onLogout()}>

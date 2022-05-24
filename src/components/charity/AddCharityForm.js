@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button,Spin,Select } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import { useAddCharityMutation } from "../../services/charity/charity.service";
 
@@ -22,7 +22,7 @@ const AddCharity = () => {
 
   const [form] = Form.useForm();
 
-
+  const { Option } = Select;
 
 
   const onFinish = (values) => {
@@ -98,7 +98,15 @@ const AddCharity = () => {
                 },
               ]}
             >
-              <Input placeholder="Category" />
+        
+              <Select
+              placeholder="Select a role"
+              allowClear >
+              <Option value="62824794d6233ba729718767">Elderly care</Option>
+              <Option value="62824778d6233ba729718764">Child Care</Option>
+              <Option value="6282472fd6233ba729718761">Mental Illness Care</Option>
+            </Select>
+            
             </Form.Item>
             <Form.Item
               label="Email"
