@@ -1,28 +1,29 @@
 import { Table } from 'antd'
 import React from 'react'
-import {  useGetAllDonationsQuery } from '../../services/donation/donation_service'
-export const DonationDataTable = () => {
-    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllDonationsQuery();
-    const allDonations = data?.data
-    console.log("allDonations : ", allDonations )
+import {   useGetAllFundrasingQuery } from '../../services/fundraise_donation/fundraisedonateService'
+export const FundDonationDataTable = () => {
+    const { data, isError, isFetching, isLoading, isSuccess, error } =    useGetAllFundrasingQuery();
+    const allFundraising = data?.data
+   // console.log("allFundraising  : ", allFundraising  )
    
 
     const columns = [
+        {
+            key: "username",
+            title: "Username",
+            dataIndex: "username"
+        },
         {
             key: "phone",
             title: "Phone",
             dataIndex: "phone"
         },
         {
-            key: "DonationOption",
+            key: "donateOption",
             title: "Payment Type",
-            dataIndex: "DonationOption"
+            dataIndex: "donateOption"
         },
-        {
-            key: "status",
-            title: "Status",
-            dataIndex: "status"
-        },
+       
         {
             key: "donate",
             title: "Amount",
@@ -30,9 +31,9 @@ export const DonationDataTable = () => {
         },
        
         {
-            key: "donatedAt",
-            title: "donated At",
-            dataIndex: "donatedAt"
+            key: "fundraisedAt",
+            title: "FundraisedAt",
+            dataIndex: "fundraisedAt"
         },
        
     ]
@@ -54,7 +55,7 @@ export const DonationDataTable = () => {
 
             <div className='mt-8'>
                 <Table 
-                dataSource={allDonations} 
+                dataSource={allFundraising} 
                 columns={columns} 
                 pagination={true} 
                 loading={isLoading}

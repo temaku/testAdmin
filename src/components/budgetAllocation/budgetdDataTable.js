@@ -1,40 +1,42 @@
 import { Table } from 'antd'
 import React from 'react'
-import {  useGetAllDonationsQuery } from '../../services/donation/donation_service'
-export const DonationDataTable = () => {
-    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllDonationsQuery();
-    const allDonations = data?.data
-    console.log("allDonations : ", allDonations )
-   
+import {  useGetAllBudgetsQuery } from '../../services/budget/budget_service'
+
+export const BudgetDataTable = () => {
+
+    
+    const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllBudgetsQuery();
+    const allBudgets = data?.data
+    console.log("allBudgets: ", allBudgets)
 
     const columns = [
+
         {
-            key: "phone",
-            title: "Phone",
-            dataIndex: "phone"
+            key: "reason",
+            title: "Reason",
+            dataIndex: "reason"
         },
         {
-            key: "DonationOption",
-            title: "Payment Type",
-            dataIndex: "DonationOption"
+            key: "description",
+            title: "Description",
+            dataIndex: "description"
         },
         {
-            key: "status",
-            title: "Status",
-            dataIndex: "status"
-        },
-        {
-            key: "donate",
+            key: "amount",
             title: "Amount",
-            dataIndex: "donate"
+            dataIndex: "amount"
         },
-       
         {
-            key: "donatedAt",
-            title: "donated At",
-            dataIndex: "donatedAt"
+            key: "currentAmount",
+            title: "Total",
+            dataIndex: "currentAmount"
         },
-       
+      
+        {
+            key: "createdAt",
+            title: "Created At",
+            dataIndex: "createdAt"
+        },
     ]
 
     return (
@@ -54,7 +56,7 @@ export const DonationDataTable = () => {
 
             <div className='mt-8'>
                 <Table 
-                dataSource={allDonations} 
+                dataSource={allBudgets} 
                 columns={columns} 
                 pagination={true} 
                 loading={isLoading}

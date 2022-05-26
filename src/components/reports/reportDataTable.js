@@ -1,38 +1,33 @@
 import { Table } from 'antd'
 import React from 'react'
-import {  useGetAllDonationsQuery } from '../../services/donation/donation_service'
-export const DonationDataTable = () => {
-    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllDonationsQuery();
-    const allDonations = data?.data
-    console.log("allDonations : ", allDonations )
+import {  useGetAllReportsQuery } from '../../services/reports/report_service'
+export const ReportDataTable = () => {
+    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllReportsQuery();
+    const allReports = data?.data
+    console.log("allReports : ",allReports )
    
 
     const columns = [
         {
-            key: "phone",
-            title: "Phone",
-            dataIndex: "phone"
+            key: "title",
+            title: "Title",
+            dataIndex: "title"
         },
         {
-            key: "DonationOption",
-            title: "Payment Type",
-            dataIndex: "DonationOption"
+            key: "description",
+            title: "Description",
+            dataIndex: "description"
         },
         {
             key: "status",
             title: "Status",
             dataIndex: "status"
         },
-        {
-            key: "donate",
-            title: "Amount",
-            dataIndex: "donate"
-        },
        
         {
-            key: "donatedAt",
-            title: "donated At",
-            dataIndex: "donatedAt"
+            key: "reportedAt",
+            title: "ReportAt",
+            dataIndex: "reportedAt"
         },
        
     ]
@@ -54,7 +49,7 @@ export const DonationDataTable = () => {
 
             <div className='mt-8'>
                 <Table 
-                dataSource={allDonations} 
+                dataSource={allReports} 
                 columns={columns} 
                 pagination={true} 
                 loading={isLoading}

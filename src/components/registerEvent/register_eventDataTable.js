@@ -1,38 +1,33 @@
 import { Table } from 'antd'
 import React from 'react'
-import {  useGetAllDonationsQuery } from '../../services/donation/donation_service'
-export const DonationDataTable = () => {
-    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllDonationsQuery();
-    const allDonations = data?.data
-    console.log("allDonations : ", allDonations )
+import {  useGetAllRegistrationQuery } from '../../services/register_event/register_event_service'
+export const RegisterEventDataTable = () => {
+    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllRegistrationQuery();
+    const allRegistration = data?.data
+    console.log("allRegistration : ", allRegistration )
    
 
     const columns = [
         {
-            key: "phone",
-            title: "Phone",
-            dataIndex: "phone"
+            key: "fullName",
+            title: "Username",
+            dataIndex: "fullName"
         },
         {
-            key: "DonationOption",
-            title: "Payment Type",
-            dataIndex: "DonationOption"
+            key: "email",
+            title: "Email",
+            dataIndex: "email"
         },
         {
-            key: "status",
-            title: "Status",
-            dataIndex: "status"
+            key: "eventId",
+            title: "EventId",
+            dataIndex: "eventId"
         },
+    
         {
-            key: "donate",
-            title: "Amount",
-            dataIndex: "donate"
-        },
-       
-        {
-            key: "donatedAt",
-            title: "donated At",
-            dataIndex: "donatedAt"
+            key: "registeredAt",
+            title: "RegisteredAt",
+            dataIndex: "registeredAt"
         },
        
     ]
@@ -54,7 +49,7 @@ export const DonationDataTable = () => {
 
             <div className='mt-8'>
                 <Table 
-                dataSource={allDonations} 
+                dataSource={allRegistration} 
                 columns={columns} 
                 pagination={true} 
                 loading={isLoading}
