@@ -4,6 +4,8 @@ import { useGetAllTasksQuery } from '../../services/task/task_service'
 
 import moment from 'moment'
 
+import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
+
 export const TaskDataTable = () => {
     const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllTasksQuery();
     const allTasks = data?.data
@@ -41,6 +43,16 @@ export const TaskDataTable = () => {
                 </>
             )
         },
+        {
+            key: "_id",
+            title: "Action",
+            render: () => (
+                <div className='flex items-center justify-center'>
+                   <AiFillEdit className='mx-3 w-5 h-5' />
+                   <AiFillDelete  className='mx-2 text-red-800 w-4 h-4'/>
+                </div>
+            )
+        }
         
     ]
 
