@@ -1,14 +1,12 @@
-
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_BASE_URL } from '../../common'
 import { token } from '../auth-header'
 import { providesTagsHelper, providesTagsHelperObject } from '../providesTagsHelper'
 
-const tagType = "Fundraise"
+const tagType = "Task"
 
-export const fundraiseApi = createApi({
-    reducerPath: "fundraiseApi",
+export const taskApi = createApi({
+    reducerPath: "taskApi",
     baseQuery: fetchBaseQuery({
         baseUrl: API_BASE_URL, prepareHeaders: (headers, { getToken }) => {
             const _token = token()
@@ -20,14 +18,14 @@ export const fundraiseApi = createApi({
     }),
     tagTypes: [tagType],
     endpoints: (builder) => ({
-        getAllFundraisess: builder.query({
-            query: () => '/v1/fundraises',
-            providesTags: (result) => providesTagsHelper(result, tagType, "FUNDRAISE"),
+        getAllTasks: builder.query({
+            query: () => '/v1/tasks',
+            providesTags: (result) => providesTagsHelper(result, tagType, "Task"),
         }),
        
-        addFundraise: builder.mutation({
+        addTask: builder.mutation({
             query: body => ({
-                url: '/v1/fundraises',
+                url: '/v1/tasks',
                 method: 'POST',
                 body
             }),
@@ -40,9 +38,9 @@ export const fundraiseApi = createApi({
 
 
 export const { 
-    useGetAllFundraisessQuery, 
-    useAddFundraiseMutation,
-} = fundraiseApi
+    useGetAllTasksQuery, 
+    useAddTaskMutation,
+} = taskApi
 
 
 

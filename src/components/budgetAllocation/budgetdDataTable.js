@@ -1,23 +1,20 @@
 import { Table } from 'antd'
 import React from 'react'
-import { useGetAllFundraisessQuery } from '../../services/fundraise/fundraise.service'
+import {  useGetAllBudgetsQuery } from '../../services/budget/budget_service'
 
+export const BudgetDataTable = () => {
 
-import moment from 'moment'
-
-export const FundraiseDataTable = () => {
-
-    const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllFundraisessQuery();
-    const allFundrasings = data?.data
-    console.log("allFundrasings: ", allFundrasings)
     
+    const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllBudgetsQuery();
+    const allBudgets = data?.data
+    console.log("allBudgets: ", allBudgets)
 
     const columns = [
-      
+
         {
-            key: "title",
-            title: "Title",
-            dataIndex: "title"
+            key: "reason",
+            title: "Reason",
+            dataIndex: "reason"
         },
         {
             key: "description",
@@ -30,29 +27,16 @@ export const FundraiseDataTable = () => {
             dataIndex: "amount"
         },
         {
-            key: "donatedAt",
-            title: "donated At",
-            dataIndex: "donatedAt",
-            render: (createdAt) => (
-                <>
-                {
-                    moment(createdAt).format("L")
-                }
-                </>
-            )
+            key: "currentAmount",
+            title: "Total",
+            dataIndex: "currentAmount"
         },
-
+      
         {
-            key: "_id",
-            title: "Action",
-            render: () => (
-                <div className='flex items-center justify-center'>
-                    <p>Edit</p>
-                    <p className='mx-3'>Delete</p>
-                </div>
-            )
-        }
-       
+            key: "createdAt",
+            title: "Created At",
+            dataIndex: "createdAt"
+        },
     ]
 
     return (
@@ -72,7 +56,7 @@ export const FundraiseDataTable = () => {
 
             <div className='mt-8'>
                 <Table 
-                dataSource={allFundrasings} 
+                dataSource={allBudgets} 
                 columns={columns} 
                 pagination={true} 
                 loading={isLoading}

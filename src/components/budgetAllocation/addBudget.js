@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button,Spin,Select } from "antd";
 import { ToastContainer, toast } from "react-toastify";
-import { useAddCharityMutation } from "../../services/charity/charity.service";
+import { useAddBudgetMutation } from "../../services/budget/budget_service";
 
 
 
-const AddCharity = () => {
+const AddBudget = () => {
 
-  const [addCharity, { data, isError, isFetching, isLoading, isSuccess, error }] = useAddCharityMutation()
-  const _addedCharity = data?.data
+  const [addBudget, { data, isError, isFetching, isLoading, isSuccess, error }] = useAddBudgetMutation()
+  const _addedBudget = data?.data
 
 
   useEffect(() => {
-    if (isSuccess && _addedCharity) {
-      toast.success("Charity added successfully!")
+    if (isSuccess && _addedBudget) {
+      toast.success("Budget allocated  successfully!")
     }
   }, [isSuccess])
 
@@ -22,12 +22,12 @@ const AddCharity = () => {
 
   const [form] = Form.useForm();
 
-  const { Option } = Select;
+  
 
 
   const onFinish = (values) => {
     console.log("values: ", values);
-    addCharity(values)
+    addBudget(values)
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -64,17 +64,17 @@ const AddCharity = () => {
             className=""
           >
             <Form.Item
-              label="Name"
-              name="name"
+              label="Reason"
+              name="reason"
               rules={[
                 {
                   required: true,
-                  message: "Please input your name of Charity!",
+                  message: "Please input your name of reason!",
                 },
               ]}
 
             >
-              <Input placeholder="Name" />
+              <Input placeholder="Reason of Budget Allocated" />
             </Form.Item>
             <Form.Item
               label="Description"
@@ -88,50 +88,20 @@ const AddCharity = () => {
             >
               <Input placeholder="Description" />
             </Form.Item>
-            <Form.Item
-              label="Category"
-              name="category"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your category!",
-                },
-              ]}
-            >
         
-              <Select
-              placeholder="Select a role"
-              allowClear >
-              <Option value="62824794d6233ba729718767">Elderly care</Option>
-              <Option value="62824778d6233ba729718764">Child Care</Option>
-              <Option value="6282472fd6233ba729718761">Mental Illness Care</Option>
-            </Select>
-            
-            </Form.Item>
             <Form.Item
-              label="Email"
-              name="email"
+              label="Amount"
+              name="amount"
               rules={[
                 {
                   required: true,
-                  message: "Please input your email!",
+                  message: "Please input your amout!",
                 },
               ]}
             >
-              <Input placeholder="Email" />
+              <Input placeholder="Amount of Budget required" />
             </Form.Item>
-            <Form.Item
-              label="Address"
-              name="address"
-            >
-              <Input placeholder="Address" />
-            </Form.Item>
-            <Form.Item
-              label="Phone"
-              name="phone"
-            >
-              <Input placeholder="Phone" />
-            </Form.Item>
+  
             <Form.Item >
               <Button 
                 type="primary" 
@@ -148,4 +118,4 @@ const AddCharity = () => {
   );
 };
 
-export default AddCharity;
+export default AddBudget;

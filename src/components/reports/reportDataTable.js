@@ -1,19 +1,13 @@
 import { Table } from 'antd'
 import React from 'react'
-import { useGetAllFundraisessQuery } from '../../services/fundraise/fundraise.service'
-
-
-import moment from 'moment'
-
-export const FundraiseDataTable = () => {
-
-    const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllFundraisessQuery();
-    const allFundrasings = data?.data
-    console.log("allFundrasings: ", allFundrasings)
-    
+import {  useGetAllReportsQuery } from '../../services/reports/report_service'
+export const ReportDataTable = () => {
+    const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllReportsQuery();
+    const allReports = data?.data
+    console.log("allReports : ",allReports )
+   
 
     const columns = [
-      
         {
             key: "title",
             title: "Title",
@@ -25,33 +19,16 @@ export const FundraiseDataTable = () => {
             dataIndex: "description"
         },
         {
-            key: "amount",
-            title: "Amount",
-            dataIndex: "amount"
+            key: "status",
+            title: "Status",
+            dataIndex: "status"
         },
+       
         {
-            key: "donatedAt",
-            title: "donated At",
-            dataIndex: "donatedAt",
-            render: (createdAt) => (
-                <>
-                {
-                    moment(createdAt).format("L")
-                }
-                </>
-            )
+            key: "reportedAt",
+            title: "ReportAt",
+            dataIndex: "reportedAt"
         },
-
-        {
-            key: "_id",
-            title: "Action",
-            render: () => (
-                <div className='flex items-center justify-center'>
-                    <p>Edit</p>
-                    <p className='mx-3'>Delete</p>
-                </div>
-            )
-        }
        
     ]
 
@@ -72,7 +49,7 @@ export const FundraiseDataTable = () => {
 
             <div className='mt-8'>
                 <Table 
-                dataSource={allFundrasings} 
+                dataSource={allReports} 
                 columns={columns} 
                 pagination={true} 
                 loading={isLoading}

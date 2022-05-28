@@ -1,89 +1,15 @@
 import { Table } from 'antd'
 import React from 'react'
+import { useGetAllEventsQuery} from '../../services/events/events_service'
+
+import moment from 'moment'
 
 export const EventDataTable = () => {
-
-    const eventsData = [
-        {
-            id: 1,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-
-
-        },
-        {
-            id: 2,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 3,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 4,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 5,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 6,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 7,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 8,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 9,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 10,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        },
-        {
-            id: 11,
-            title:"Helping other",
-            description:"this is description",
-            date:"2030/04/02",
-            organizer:"mekedonia"
-        }
-    ]
+    
+    const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllEventsQuery();
+    const allEvents = data?.data
+    console.log("allEvents: ", allEvents)
+    
 
     const columns = [
         {
@@ -99,22 +25,55 @@ export const EventDataTable = () => {
         {
             key: "date",
             title: "Date",
-            dataIndex: "date"
+            dataIndex: "date",
+            render: (date) => (
+                <>
+                {
+                    moment(date).format("L")
+                }
+                </>
+            )
         },
+        // {
+        //     key: "organizer",
+        //     title: "Organizer",
+        //     dataIndex: "organizer"
+        // },
         {
-            key: "organizer",
-            title: "Organizer",
-            dataIndex: "organizer"
-        },
+            key: "_id",
+            title: "Action",
+            render: () => (
+                <div className='flex items-center justify-center'>
+                    <p>Edit</p>
+                    <p className='mx-3'>Delete</p>
+                </div>
+            )
+        }
        
     ]
 
     return (
         <div className='flex flex-col'>
 
+            {
+                isError &&
+                <div className='flex mt-3'>
+                    <p className='text-red-500 text-md font-bold mx-3'>
+                        {error?.name || error?.status}
+                    </p>
+                    <p className='text-red-500 text-md font-bold'>
+                        {error?.message || error?.data.message}
+                    </p>
+                </div>
+            }
 
             <div className='mt-8'>
-                <Table dataSource={eventsData} columns={columns} pagination={true} rowKey="id" />
+                <Table 
+                dataSource={allEvents} 
+                columns={columns} 
+                pagination={true} 
+                loading={isLoading}
+                rowKey="id" />
             </div>
 
         </div>
