@@ -49,67 +49,79 @@ export const Home = (props) => {
                         style={{ height: '100%', borderRight: 0, marginTop: 50 }}
                     >
                         <Menu.Item key="/dashboard" icon={<AiOutlineHome />}>
-                        <NavLink to="/dashboard" className='nav-text'>
-                            Dashboard
-                        </NavLink>
-                    </Menu.Item>
+                            <NavLink to="/dashboard" className='nav-text'>
+                                Dashboard
+                            </NavLink>
+                        </Menu.Item>
 
-                    <Menu.Item key="/users" icon={<AiOutlineUser />}>
-                        <NavLink to="/users" className='nav-text'>
-                            Users
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/charity" icon={<FiUsers />}>
-                        <NavLink to="/charity" className='nav-text'>
-                            Charity
-                        </NavLink>
-                    </Menu.Item>
+                        <Menu.Item key="/users" icon={<AiOutlineUser />}>
+                            <NavLink to="/users" className='nav-text'>
+                                Users
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="/charity" icon={<FiUsers />}>
+                            <NavLink to="/charity" className='nav-text'>
+                                Charity
+                            </NavLink>
+                        </Menu.Item>
 
-                    <Menu.Item key="/donation" icon={<FiUsers />}>
-                        <NavLink to="/donation" className='nav-text'>
-                            Donations
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/event" icon={<AiOutlineNotification />}>
-                        <NavLink to="/event" className='nav-text'>
-                            Events
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/fundraising" icon={<AiOutlineSetting />}>
-                        <NavLink to="/fundraising" className='nav-text'>
-                            Fundraising
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/funddonations" icon={<AiOutlineSetting />}>
-                        <NavLink to="/fundonations" className='nav-text'>
-                            FundraiseDonations
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/tasks" icon={<AiOutlineSetting />}>
-                        <NavLink to="/tasks" className='nav-text'>
-                            Tasks
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/reports" icon={<AiOutlineSetting />}>
-                        <NavLink to="/reports" className='nav-text'>
-                            Reports
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/registeredEvent" icon={<AiOutlineSetting />}>
-                        <NavLink to="/registeredEvents" className='nav-text'>
-                            RegisteredUsersEvent
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/budgetAllocate" icon={<AiOutlineSetting />}>
-                        <NavLink to="/budgetAllocate" className='nav-text'>
-                            Budget Allocation
-                        </NavLink>
-                    </Menu.Item>
-                    <Menu.Item key="/generateReport" icon={<AiOutlineSetting />}>
-                        <NavLink to="/generateReport" className='nav-text'>
-                            GenerateReport Report
-                        </NavLink>
-                    </Menu.Item>
+                        <Menu.Item key="/donation" icon={<FiUsers />}>
+                            <NavLink to="/donation" className='nav-text'>
+                                Donations
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="/event" icon={<AiOutlineSetting />}>
+                            <NavLink to="/event" className='nav-text'>
+                                Events
+                            </NavLink>
+                        </Menu.Item>
+
+                        {/* Fundraising begins  */}
+                        <Menu.SubMenu title="Fundraising" icon={<AiOutlineSetting />}>
+                            <Menu.Item key="/fundraising" icon={<AiOutlineSetting />}>
+                                <NavLink to="/fundraising" className='nav-text'>
+                                    Fundraising
+                                </NavLink>
+                            </Menu.Item>
+
+                            <Menu.Item key="/funddonations" icon={<AiOutlineSetting />}>
+                                <NavLink to="/fundonations" className='nav-text'>
+                                    FundraiseDonations
+                                </NavLink>
+                            </Menu.Item>
+                        </Menu.SubMenu>
+
+                        {/* Fundraising ends */}
+                        
+                        {/* tasks and reporting begins */}
+                        <Menu.SubMenu title="Reports and Tasks" icon={<AiOutlineNotification />} >
+                            <Menu.Item key="/tasks" icon={<AiOutlineSetting />}>
+                                <NavLink to="/tasks" className='nav-text'>
+                                    Tasks
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="/reports" icon={<AiOutlineSetting />}>
+                                <NavLink to="/reports" className='nav-text'>
+                                    Reports
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="/registeredEvent" icon={<AiOutlineSetting />}>
+                                <NavLink to="/registeredEvents" className='nav-text'>
+                                    RegisteredUsersEvent
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="/budgetAllocate" icon={<AiOutlineSetting />}>
+                                <NavLink to="/budgetAllocate" className='nav-text'>
+                                    Budget Allocation
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="/generateReport" icon={<AiOutlineSetting />}>
+                                <NavLink to="/generateReport" className='nav-text'>
+                                    GenerateReport Report
+                                </NavLink>
+                            </Menu.Item>
+                        </Menu.SubMenu>
+                        {/* tasks and reporting ends  */}
                     </Menu>
                     <div className='absolute bottom-4 left-0 w-full h-20'>
                         <span className=' flex items-center ml-4 mt-2 cursor-pointer' onClick={() => onLogout()}>
