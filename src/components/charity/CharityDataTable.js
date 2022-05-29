@@ -16,6 +16,7 @@ export const CharityDataTable = () => {
 
     const [editModalVisible, setEditModalVisible] = useState(false)
     const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+    
     const [loading, setLoading] = useState(false)
     const [charityData, setCharityData] = useState({})
     const [charityId, setCharityId] = useState('')
@@ -23,6 +24,7 @@ export const CharityDataTable = () => {
     const { data, isError, isFetching, isLoading, isSuccess, error } = useGetAllCharitiesQuery();
     const allCharities = data?.data
 
+    // updating and deleting the charity
     const [updateCharity, { data: updatedData, isError: isUpdateError,  isLoading: isUpdateLoading, isSuccess: isUpdateSuccess, error: updateError }] = useUpdateCharityMutation()
     const [deleteCharity, { data: deletedData, isError: isDeleteError,  isLoading: isDeleteLoading, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteCharityMutation()
     
@@ -65,6 +67,7 @@ export const CharityDataTable = () => {
         setEditModalVisible(true)
         setCharityData(record)
     }
+
     const cancelEditModal = () => {
         setEditModalVisible(false)
     }
