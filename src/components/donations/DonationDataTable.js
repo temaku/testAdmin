@@ -55,7 +55,7 @@ export const DonationDataTable = () => {
 
     // set modals visible
     const showEditModal = (record) => {
-        console.log("Data yetekebelnew: ", record)
+        form.setFieldsValue(record)
         setEditModalVisible(true)
         setDonationData(record)
     }

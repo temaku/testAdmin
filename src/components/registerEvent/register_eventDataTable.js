@@ -1,10 +1,15 @@
 import { Table } from 'antd'
 import React from 'react'
 import {  useGetAllRegistrationQuery } from '../../services/register_event/register_event_service'
+
+import moment from 'moment'
+
+
 export const RegisterEventDataTable = () => {
+
+
     const { data, isError, isFetching, isLoading, isSuccess, error } =   useGetAllRegistrationQuery();
     const allRegistration = data?.data
-    console.log("allRegistration : ", allRegistration )
    
 
     const columns = [
@@ -18,16 +23,18 @@ export const RegisterEventDataTable = () => {
             title: "Email",
             dataIndex: "email"
         },
-        {
-            key: "eventId",
-            title: "EventId",
-            dataIndex: "eventId"
-        },
-    
+        
         {
             key: "registeredAt",
             title: "RegisteredAt",
-            dataIndex: "registeredAt"
+            dataIndex: "registeredAt",
+            render: (registeredAt) => (
+                <>
+                    {
+                        moment(registeredAt).format("YYY-MM-DD")
+                    }
+                </>
+            )
         },
        
     ]

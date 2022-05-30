@@ -40,8 +40,10 @@ export const CharityDataTable = () => {
     // toast charity edite message
     useEffect(() => {
         if(isUpdateSuccess && updatedData){
-            console.log("updatedData: ", updatedData)
             toast.success("Charity Updated successfully!")
+            setTimeout(() => {
+                setEditModalVisible(false)
+            }, 2000)
         }
         return () => {
             setCharityData({})
@@ -52,11 +54,10 @@ export const CharityDataTable = () => {
     // toast charity delete message 
     useEffect(() => {
         if(isDeleteSuccess && deletedData){
-            console.log("delete data: ", deletedData)
             toast.success("Charity Deleted successfully!")
             setTimeout(() => {
                 setDeleteModalVisible(false)
-            }, 1000)
+            }, 2000)
         }
         
     },[isDeleteSuccess])
@@ -64,6 +65,7 @@ export const CharityDataTable = () => {
 
     // set modals visible
     const showEditModal = (record) => {
+        form.setFieldsValue(record)
         setEditModalVisible(true)
         setCharityData(record)
     }

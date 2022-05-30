@@ -12,9 +12,6 @@ export const UserDataTable = () => {
     const allUsers = data?.data
 
 
-    console.log("allUsers: ", allUsers)
-
-
     const columns = [
         {
             key: "userName",

@@ -1,20 +1,105 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Home } from '..'
+import { useGetAllUsersQuery } from '../../services/user/user.service'
 
 
+import { Spin } from 'antd';
 import './dashboard.css'
 
+
+import { LoadingOutlined } from '@ant-design/icons';
+import { useGetAllCharitiesQuery } from '../../services/charity/charity.service';
+import { useGetAllDonationsQuery } from '../../services/donation/donation_service';
+import { useGetAllFundraisessQuery } from '../../services/fundraise/fundraise.service';
+import { useGetAllEventsQuery } from '../../services/events/events_service';
+
 export const Dashboard = () => {
+
+    const [totalUsers, setTotalUsers] = useState(0)
+    const [totalCharity, setTotalCharity] = useState(0)
+    const [totalDonation, setTotalDonation] = useState(0)
+    const [totalFundRaising, setTotalFundRaising] = useState(0)
+    const [totalEvent, setTotalEvent] = useState(0)
+
+    // get all users
+    const { data, isError, isFetching, isLoading, isSuccess, error } = useGetAllUsersQuery()
+    const allUsers = data?.data
+
+
+    // get all charities
+
+    const { data: charityData, isError: isCharityError, isFetching: isCHarityFetching, isLoading: isCharityLoading, isSuccess: isCharitySuccess, error: charityError } = useGetAllCharitiesQuery();
+    const allCharities = charityData?.data
+
+
+    // get all donations
+
+    const { data: donationData, isError: isDonationError, isFetching: isDonationFetching, isLoading: isDonationLoading, isSuccess: isDonationSuccess, error: donationError } = useGetAllDonationsQuery();
+    const allDonations = donationData?.data
+
+    // get all fundraisings
+    const { data: fundData, isError: isFundError, isFetching: isFundFetching, isLoading: isFundLoading, isSuccess: isFundSuccess, error: fundError } =  useGetAllFundraisessQuery();
+    const allFundrasings = fundData?.data
+    
+
+    // get all events
+
+    const { data: eventData, isError: isEventError, isFetching: isEventFetching, isLoading: isEventLoading, isSuccess: isEventSuccess, error: eventError } =  useGetAllEventsQuery();
+    const allEvents = eventData?.data
+    
+
+
+    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
+
+
+    useEffect(() => {
+        if (isSuccess && data) {
+            setTotalUsers(allUsers.length)
+        }
+        if (isCharitySuccess && charityData) {
+            setTotalCharity(allCharities.length)
+        }
+
+        if (isDonationSuccess && donationData) {
+            setTotalDonation(allDonations.length)
+        }
+        if (isFundSuccess && fundData) {
+            setTotalFundRaising(allFundrasings.length)
+        }
+        if (isEventSuccess && eventData) {
+            setTotalEvent(allEvents.length)
+        }
+    }, [isSuccess, isCharitySuccess, isDonationSuccess, isFundSuccess, isEventSuccess])
+
+
+
 
     return (
         <Home>
             <div>
                 <div className="grid grid:cols-1 lg:grid-cols-3 2xlgrid-cols-4 justify-between mt-4 gap-10">
+                    {
+                        isDonationError &&
+                        <div className='flex mt-3'>
+                            <p className='text-red-500 text-md font-bold mx-3'>
+                                {donationError?.name || donationError?.status}
+                            </p>
+                            <p className='text-red-500 text-md font-bold'>
+                                {donationError?.message || donationError?.data.message}
+                            </p>
+                        </div>
+                    }
                     <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
                         <img src="https://i.imgur.com/VHc5SJE.png" alt="" />
                         <div className="text-center">
-                            <h1 className="text-4xl font-bold text-gray-800">40</h1>
+                            {
+                                isLoading || isFetching ? (<Spin indicator={antIcon} />) : (
+                                    <h1 className="text-4xl font-bold text-gray-800">{totalUsers}</h1>
+                                )
+                            }
+
                             <span className="text-gray-500">Users</span>
                         </div>
                     </div>
@@ -25,7 +110,11 @@ export const Dashboard = () => {
                             alt=""
                         />
                         <div className="text-center">
-                            <h1 className="text-4xl font-bold text-gray-800">3</h1>
+                            {
+                                isCharityLoading || isCHarityFetching ? (<Spin indicator={antIcon} />) : (
+                                    <h1 className="text-4xl font-bold text-gray-800">{totalCharity}</h1>
+                                )
+                            }
                             <span className="text-gray-500">Charity</span>
                         </div>
                     </div>
@@ -36,7 +125,11 @@ export const Dashboard = () => {
                             alt=""
                         />
                         <div className="text-center">
-                            <h1 className="text-4xl font-bold text-gray-800">2.5k</h1>
+                            {
+                                isDonationLoading || isDonationFetching ? (<Spin indicator={antIcon} />) : (
+                                    <h1 className="text-4xl font-bold text-gray-800">{totalDonation}</h1>
+                                )
+                            }
                             <span className="text-gray-500">Donations</span>
                         </div>
                     </div>
@@ -47,7 +140,11 @@ export const Dashboard = () => {
                             alt=""
                         />
                         <div className="text-center">
-                            <h1 className="text-4xl font-bold text-gray-800">5</h1>
+                        {
+                                isFundLoading || isFundFetching ? (<Spin indicator={antIcon} />) : (
+                                    <h1 className="text-4xl font-bold text-gray-800">{totalFundRaising}</h1>
+                                )
+                            }
                             <span className="text-gray-500">Fundraising</span>
                         </div>
                     </div>
@@ -58,7 +155,11 @@ export const Dashboard = () => {
                             alt=""
                         />
                         <div className="text-center">
-                            <h1 className="text-4xl font-bold text-gray-800">10</h1>
+                        {
+                                isEventLoading || isEventFetching ? (<Spin indicator={antIcon} />) : (
+                                    <h1 className="text-4xl font-bold text-gray-800">{totalEvent}</h1>
+                                )
+                            }
                             <span className="text-gray-500"> Events</span>
                         </div>
                     </div>

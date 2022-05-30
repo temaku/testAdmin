@@ -9,7 +9,6 @@ export const FundraiseDataTable = () => {
 
     const { data, isError, isFetching, isLoading, isSuccess, error } =  useGetAllFundraisessQuery();
     const allFundrasings = data?.data
-    console.log("allFundrasings: ", allFundrasings)
     
 
     const columns = [
