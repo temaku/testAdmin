@@ -2,6 +2,8 @@ import { Table } from 'antd'
 import React from 'react'
 import {  useGetAllBudgetsQuery } from '../../services/budget/budget_service'
 
+import moment from 'moment'
+
 export const BudgetDataTable = () => {
 
     
@@ -35,7 +37,14 @@ export const BudgetDataTable = () => {
         {
             key: "createdAt",
             title: "Created At",
-            dataIndex: "createdAt"
+            dataIndex: "createdAt",
+            render:(createdAt) => (
+                <>
+                {
+                    moment(createdAt).format("YYYY-MM-DD")
+                }
+                </>
+            )
         },
     ]
 
