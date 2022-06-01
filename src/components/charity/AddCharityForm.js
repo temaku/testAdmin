@@ -89,6 +89,7 @@ const AddCharity = () => {
               <Input placeholder="Description" />
             </Form.Item>
             <Form.Item
+              
               label="Category"
               name="category"
               rules={[
@@ -99,13 +100,7 @@ const AddCharity = () => {
               ]}
             >
         
-              <Select
-              placeholder="Select a role"
-              allowClear >
-              <Option value="62824794d6233ba729718767">Elderly care</Option>
-              <Option value="62824778d6233ba729718764">Child Care</Option>
-              <Option value="6282472fd6233ba729718761">Mental Illness Care</Option>
-            </Select>
+        <Input placeholder="category" />
             
             </Form.Item>
             <Form.Item
