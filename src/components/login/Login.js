@@ -34,9 +34,8 @@ export const Login = () => {
 
     // reset everything to initial
     dispatch(reset());
-  }, [dispatch, navigate, isSuccess]);
+  }, [dispatch, navigate, isSuccess, isError]);
 
-  console.log("message: ", message);
 
   const onFinish = (values) => {
     console.log("values: ", values);
