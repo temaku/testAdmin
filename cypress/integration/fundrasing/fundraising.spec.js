@@ -38,16 +38,17 @@ describe("fundrasing navlink", () => {
 
         
     })
-    // it("checks if the admin can not  add tasks the field required is null", () => {
-    //     cy.visit("http://localhost:3000/tasks");
-    //     cy.get('a > .ant-btn > span').click();
-    //     cy.get('#title').type('Help this person');
+    it("checks if the admin can not  add tasks the field required is null", () => {
+        cy.visit("http://localhost:3000/tasks");
+        cy.get('a > .ant-btn > span').click();
+        cy.get('#title').type('Help this person');
        
-       // cy.get('#task').type('thisnewtask');
+       cy.get('#task').type('thisnewtask');
    
 
         
     })
+  })
 
 
     

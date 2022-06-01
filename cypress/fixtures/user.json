@@ -1,4 +1,11 @@
 {
-    "username":"Adem",
-    "password":"pass1234"
+    "valid":{
+        "username":"Adem",
+        "password":"pass1234"
+
+    },
+    "invalid":{
+        "username":"Adem",
+        "password":"pass233"
+    }
 }
