@@ -107,12 +107,24 @@ const AddEditUser = () => {
             <Form.Item
               label="Phone"
               name="phone"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your phone!",
+                },
+              ]}
             >
               <Input placeholder="Phone" />
             </Form.Item>
             <Form.Item
               label="Address"
               name="address"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your address!",
+                },
+              ]}
             >
               <Input placeholder="Address" />
             </Form.Item>
@@ -127,13 +139,7 @@ const AddEditUser = () => {
                 },
               ]}
              >
-              <Select
-                placeholder="Select a role"
-                allowClear
-              >
-                <Option value="donor">Donor</Option>
-                <Option value="volunteers">Volunteer</Option>
-              </Select>
+             <Input placeholder="role" />
             </Form.Item>
 
 
