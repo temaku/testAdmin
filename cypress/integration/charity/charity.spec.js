@@ -32,7 +32,7 @@ describe("charity navlink", () => {
     // });
     // "should store the token in local storage"
     cy.getById("login_form").submit();
-    cy.wait(10000);
+   // cy.wait(10000);
     // should go to dashbaord page"
     cy.url().should("eq", "http://localhost:3000/dashboard");
     // cy.assertRedirect('/dashboard');
@@ -50,9 +50,9 @@ describe("charity navlink", () => {
     cy.get(".ant-form-item-control-input-content > .ant-btn > span").click();
     
   });
-  it("checks if the admin can edit charity", () => {
+  it("checks if the admin can not  add with empty field charity", () => {
     cy.getById("logout_button").click();
-    cy.wait(3000);
+   // cy.wait(3000);
     cy.url().should("eq", "http://localhost:3000/");
     cy.getById("username")
     .type("Adem", { delay: 100 })
@@ -64,56 +64,7 @@ describe("charity navlink", () => {
   // });
   // "should store the token in local storage"
   cy.getById("login_form").submit();
-  cy.wait(10000);
-  // should go to dashbaord page"
-    cy.visit("http://localhost:3000/charity");
-    cy.get(':nth-child(7) > :nth-child(8) > .flex > .mx-3').click()
-    cy.get("#name").clear().type("laeke");
-    cy.get(".ant-modal-footer > .ant-btn-primary > span").click();
-    
-    
-
-    
-  });
-//   it('checks if the admin can delete charity', () => {
-//     cy.getById("logout_button").click();
-//     cy.wait(3000);
-//     cy.url().should("eq", "http://localhost:3000/");
-//     cy.getById("username")
-//     .type("Adem", { delay: 100 })
-//     .should("have.value", "Adem");
-
-//   cy.getById("password")
-//     .type("pass1234", { delay: 100 })
-//     .should("have.value", "pass1234");
-//   // });
-//   // "should store the token in local storage"
-//   cy.getById("login_form").submit();
-//   cy.wait(10000);
-//   // should go to dashbaord page"
-//   cy.url().should("eq", "http://localhost:3000/dashboard");
-
-//   cy.visit("http://localhost:3000/charity");
-//   cy.get(':nth-child(7) > :nth-child(8) > .flex > .mx-2 > path').click();
-//   cy.get('.ant-modal-footer > .ant-btn-primary > span').click();
-
-//     // cy.contains('User Updated Successfully');
-// });
-it("checks if the admin can not  add with empty field charity", () => {
-    cy.getById("logout_button").click();
-    cy.wait(3000);
-    cy.url().should("eq", "http://localhost:3000/");
-    cy.getById("username")
-    .type("Adem", { delay: 100 })
-    .should("have.value", "Adem");
-
-  cy.getById("password")
-    .type("pass1234", { delay: 100 })
-    .should("have.value", "pass1234");
-  // });
-  // "should store the token in local storage"
-  cy.getById("login_form").submit();
-  cy.wait(10000);
+ // cy.wait(10000);
   // should go to dashbaord page"
     cy.visit("http://localhost:3000/charity");
     cy.get("a > .ant-btn > span").click();
@@ -128,5 +79,50 @@ it("checks if the admin can not  add with empty field charity", () => {
 
    
   });
+
+  it("checks if the admin can edit charity", () => {
+    cy.getById("logout_button").click();
+   // cy.wait(3000);
+    cy.url().should("eq", "http://localhost:3000/");
+    cy.getById("username")
+    .type("Adem", { delay: 100 })
+    .should("have.value", "Adem");
+
+  cy.getById("password")
+    .type("pass1234", { delay: 100 })
+    .should("have.value", "pass1234");
+  // });
+  // "should store the token in local storage"
+  cy.getById("login_form").submit();
+ // cy.wait(10000);
+  // should go to dashbaord page"
+    cy.visit("http://localhost:3000/charity");
+    cy.get(':nth-child(7) > :nth-child(8) > .flex > .mx-3').click()
+    cy.get("#name").clear().type("laeke");
+    cy.get(".ant-modal-footer > .ant-btn-primary > span").click();
+      
+  });
+  it('checks if the admin can delete charity', () => {
+      cy.visit("http://localhost:3000/login")
+      cy.getById("username")
+    .type("Adem", { delay: 100 })
+    .should("have.value", "Adem");
+
+  cy.getById("password")
+    .type("pass1234", { delay: 100 })
+    .should("have.value", "pass1234");
+  // });
+  // "should store the token in local storage"
+  cy.getById("login_form").submit();
+ // cy.wait(10000);
+
+     cy.visit("http://localhost:3000/charity");
+     cy.get(':nth-child(7) > :nth-child(8) > .flex > .mx-2 > path').click();
+     cy.get('.ant-modal-footer > .ant-btn-primary > span').click();
+    // cy.refreshDatabase();
+  
+
+
 });
+})
 

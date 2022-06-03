@@ -7,20 +7,10 @@ import moment from 'moment'
 
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import EditModal from '../modals/EditModal'
-import { useUpdateCharityMutation } from '../../services/charity/charity.service'
 import { toast, ToastContainer } from 'react-toastify'
 import DeleteModal from '../modals/DeleteModal'
 
 export const DonationDataTable = () => {
-
-    const { data, isError, isFetching, isLoading, isSuccess, error } = useGetAllDonationsQuery();
-    const allDonations = data?.data
-
-    const [updateDonation, { data: updateData, isError: isUpdateError, isLoading: isUpdateLoading, isSuccess: isUpdateSUccess, error: updateError }] = useUpdateDonationMutation()
-    const [deleteDonation, { data: deleteData, isError: isDeleteError, isLoading: isDeleteLoading, isSuccess: isDeleteSUccess, error: deleteError }] = useDeleteDonationMutation()
-
-
-
 
     const [editModalVisible, setEditModalVisible] = useState(false)
     const [deleteModalVisible, setDeleteModalVisible] = useState(false)
@@ -28,6 +18,12 @@ export const DonationDataTable = () => {
     const [loading, setLoading] = useState(false)
     const [donationData, setDonationData] = useState({})
     const [donationId, setDonationId] = useState('')
+
+    const { data, isError, isFetching, isLoading, isSuccess, error } = useGetAllDonationsQuery();
+    const allDonations = data?.data
+
+    const [updateDonation, { data: updateData, isError: isUpdateError, isLoading: isUpdateLoading, isSuccess: isUpdateSUccess, error: updateError }] = useUpdateDonationMutation()
+    const [deleteDonation, { data: deleteData, isError: isDeleteError, isLoading: isDeleteLoading, isSuccess: isDeleteSUccess, error: deleteError }] = useDeleteDonationMutation()
 
 
 
@@ -46,14 +42,17 @@ export const DonationDataTable = () => {
 
 
     useEffect(() => {
-        if (isDeleteSUccess && deleteData) {
-            toast.success("Donation Deleted succesfuuly!")
-            setDeleteModalVisible(false)
+        if(isDeleteSUccess && deleteData){
+            toast.success("Donation Deleted successfully!")
+            setTimeout(() => {
+                setDeleteModalVisible(false)
+            }, 2000)
         }
-    }, [isDeleteSUccess])
+        
+    },[isDeleteSUccess])
 
 
-    // set modals visible
+    // set modals visi
     const showEditModal = (record) => {
         form.setFieldsValue(record)
         setEditModalVisible(true)
@@ -76,25 +75,24 @@ export const DonationDataTable = () => {
     }
 
 
-    // handle submit 
-
-    const handleUpdateDonation = (values) => {
+    const handleDonationSubmit = (values) => {
         const id = donationData._id
         const body = {
             ...values,
             id
         }
+
         updateDonation(body)
     }
 
-    const handleUpdateDonationFailed = (errors) => {
+    const handleDonationSubmitFailed = (errors) => {
         console.log("errors: ", errors)
     }
 
-
-    const confirmDeleteDonation = () => {
-        deleteDonation({ donationId })
+    const handleDonationDelete = () => {
+        deleteDonation({donationId})
     }
+
 
 
 
@@ -195,7 +193,7 @@ export const DonationDataTable = () => {
 
             {/* first edit modal */}
             {
-                editModalVisible &&
+                editModalVisible &&(
                 <EditModal
                     visible={editModalVisible}
                     title="Edit Donation"
@@ -206,7 +204,7 @@ export const DonationDataTable = () => {
 
 
                     {
-                        isUpdateError &&
+                        isUpdateError &&(
                         <div className='flex mt-3'>
                             <p className='text-red-500 text-md font-bold mx-3'>
                                 {updateError?.name || updateError?.status}
@@ -215,7 +213,7 @@ export const DonationDataTable = () => {
                                 {updateError?.message || updateError?.data.message}
                             </p>
                         </div>
-                    }
+                    )}
 
 
 
@@ -224,8 +222,8 @@ export const DonationDataTable = () => {
                         initialValues={{
                             status: donationData?.status
                         }}
-                        onFinish={handleUpdateDonation}
-                        onFinishFailed={handleUpdateDonationFailed}
+                        onFinish={handleDonationSubmit}
+                        onFinishFailed={handleDonationSubmitFailed}
                         autoComplete="off"
                         layout="vertical"
                         className=""
@@ -240,8 +238,8 @@ export const DonationDataTable = () => {
                                 placeholder="Select status"
                                 allowClear >
                                 <Option value="pending">PENDING</Option>
-                                <Option value="rejected">REJECTED</Option>
-                                <Option value="accepted">ACCEPTED</Option>
+                                <Option value="REjected">REJECTED</Option>
+                                <Option value="Accepted">ACCEPTED</Option>
                             </Select>
 
                         </Form.Item>
@@ -249,16 +247,16 @@ export const DonationDataTable = () => {
                     </Form>
 
                 </EditModal>
-            }
+            )}
 
             {/* Delete Modal */}
 
             {
-                deleteModalVisible &&
+                deleteModalVisible &&(
                 <DeleteModal
                     visible={deleteModalVisible}
                     title="Delete Donation"
-                    handleOk={confirmDeleteDonation}
+                    handleOk={handleDonationDelete}
                     loading={isDeleteLoading}
                     handleCancel={cancelDeleteModal}
                 >
@@ -276,10 +274,21 @@ export const DonationDataTable = () => {
                     }
 
                     <div>
-                        DO you want to delete this donation
+                        Do you want to delete this donation
                     </div>
                 </DeleteModal>
-            }
+           ) }
+            {
+                isError &&(
+                <div className='flex mt-3'>
+                    <p className='text-red-500 text-md font-bold mx-3'>
+                        {error?.name || error?.status}
+                    </p>
+                    <p className='text-red-500 text-md font-bold'>
+                        {error?.message || error?.data.message}
+                    </p>
+                </div>
+           ) }
 
 
             <div className='mt-8'>

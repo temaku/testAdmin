@@ -63,6 +63,20 @@ const AddBudget = () => {
             layout="vertical"
             className=""
           >
+
+<Form.Item
+              label="Charity"
+              name="charity"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your name of charity!",
+                },
+              ]}
+
+            >
+              <Input placeholder="The name  of Charity Budget Allocated" />
+            </Form.Item>
             <Form.Item
               label="Reason"
               name="reason"
