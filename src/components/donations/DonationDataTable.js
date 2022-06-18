@@ -36,6 +36,7 @@ export const DonationDataTable = () => {
     const { Option } = Select;
 
 
+    console.log("deletedData: ", deleteData)
 
     useEffect(() => {
         if (isUpdateSUccess && updateData) {
