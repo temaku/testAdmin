@@ -12,10 +12,10 @@ describe("user navlink", () => {
       cy.waitForReact();
     });
   
-    beforeEach(() => {
-      // cy.visit("http://localhost:3000/signin");
-      cy.waitForReact();
-    })
+    // beforeEach(() => {
+    //   // cy.visit("http://localhost:3000/signin");
+    //   cy.waitForReact();
+    // })
     it("checks if the admin can add volunteers", () => {
     cy.getById("username")
       .type("Adem", { delay: 100 })
@@ -27,7 +27,7 @@ describe("user navlink", () => {
     // });
     // "should store the token in local storage"
     cy.getById("login_form").submit();
-    cy.wait(5000);
+    //cy.wait(5000);
     // should go to dashbaord page"
     cy.url().should("eq", "http://localhost:3000/dashboard");
 
@@ -45,6 +45,22 @@ describe("user navlink", () => {
 
     })
     it("checks if the admin can not  add volunteers with empty field", () => {
+        cy.getById("logout_button").click();
+        //cy.wait(3000);
+        cy.url().should("eq", "http://localhost:3000/");
+        cy.getById("username")
+        .type("Adem", { delay: 100 })
+        .should("have.value", "Adem");
+  
+      cy.getById("password")
+        .type("pass1234", { delay: 100 })
+        .should("have.value", "pass1234");
+      // });
+      // "should store the token in local storage"
+      cy.getById("login_form").submit();
+         cy.wait(5000);
+         cy.url().should("eq", "http://localhost:3000/dashboard");
+       
     
         cy.visit("http://localhost:3000/users");
         cy.get('a > .ant-btn > span').click();

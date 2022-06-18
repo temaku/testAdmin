@@ -12,10 +12,10 @@ describe("budget aloc navlink", () => {
       cy.waitForReact();
     });
   
-    beforeEach(() => {
-      // cy.visit("http://localhost:3000/signin");
-      cy.waitForReact();
-    });
+    // beforeEach(() => {
+    //   // cy.visit("http://localhost:3000/signin");
+    //   cy.waitForReact();
+    // });
 
 
     it("checks if the admin can allocate budget", () => {
@@ -29,20 +29,24 @@ describe("budget aloc navlink", () => {
       // });
       // "should store the token in local storage"
       cy.getById("login_form").submit();
-         cy.wait(5000);
+        // cy.wait(5000);
          cy.url().should("eq", "http://localhost:3000/dashboard");
+      
         cy.visit("http://localhost:3000/budgetAllocate");
         cy.get('a > .ant-btn > span').click();
         cy.get('#reason').type('mekdonia need budget to buy generator')
         cy.get('#description').type('this the description')
         cy.get('#amount').type('10000')
         cy.get('.ant-form-item-control-input-content > .ant-btn > span').click();
-        cy.wait(10000);
+        //cy.wait(10000);
       
 
         
     })
-    it.only("checks if the admin can not allocate the field required is empty", () => {
+    it("checks if the admin can not allocate the field required is empty", () => {
+        cy.getById("logout_button").click();
+        cy.wait(3000);
+        cy.url().should("eq", "http://localhost:3000/");
         cy.getById("username")
         .type("Adem", { delay: 100 })
         .should("have.value", "Adem");
@@ -53,8 +57,9 @@ describe("budget aloc navlink", () => {
       // });
       // "should store the token in local storage"
       cy.getById("login_form").submit();
-         cy.wait(5000);
+         //cy.wait(5000);
          cy.url().should("eq", "http://localhost:3000/dashboard");
+      
         cy.visit("http://localhost:3000/budgetAllocate");
         cy.get('a > .ant-btn > span').click();
         cy.get('#reason').type('mekdonia need budget to buy generator');
