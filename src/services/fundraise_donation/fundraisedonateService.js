@@ -31,8 +31,8 @@ export const fundDonationApi = createApi({
             invalidatesTags: [{ type: tagType }],
         }),
         deleteDonateFund: builder.mutation({
-            query: ({donateId}) => ({
-                url: `/v1/donateFund/${donateId}`,
+            query: ({donationId}) => ({
+                url: `/v1/donateFund/${donationId}`,
                 method: 'DELETE',
             }),
             invalidatesTags: [{ type: tagType }],

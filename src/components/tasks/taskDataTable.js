@@ -125,11 +125,11 @@ export const TaskDataTable = () => {
             key: "_id",
             title: "Action",
             render: (text,record) => (
-                <div className='flex items-center justify-center'>
+                <div className='flex items-center justify-center cursor-pointer'>
                    <AiFillEdit className='mx-3 w-5 h-5' 
                   onClick={() => showEditModal(record)}
                    />
-                   <AiFillDelete  className='mx-2 text-red-800 w-4 h-4'
+                   <AiFillDelete  className='mx-2 text-red-800 w-4 h-4 cursor-pointer'
                     onClick={() => showDeleteModal(record)}
                    />
                 </div>

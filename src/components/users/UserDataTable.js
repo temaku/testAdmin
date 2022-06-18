@@ -44,6 +44,8 @@ export const UserDataTable = () => {
     
       const { TextArea } = Input;
     
+      console.log("deletedData: ", deletedData)
+
       // toast charity edite message
       useEffect(() => {
         if (isUpdateSuccess && updatedData) {

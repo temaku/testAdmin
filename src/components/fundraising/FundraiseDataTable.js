@@ -104,6 +104,7 @@ export const FundraiseDataTable = () => {
       };
     
       const handleFundraiseDelete = () => {
+        console.log("fundraiseID: ", fundId)
         deleteFundraise({ fundId });
       };
 
