@@ -80,6 +80,7 @@ export const Dashboard = () => {
         <Home>
             <div>
                 <div className="grid grid:cols-1 lg:grid-cols-3 2xlgrid-cols-4 justify-between mt-4 gap-10">
+                    //donation
                     {
                         isDonationError &&
                         <div className='flex mt-3'>
