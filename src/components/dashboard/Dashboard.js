@@ -13,6 +13,7 @@ import { useGetAllCharitiesQuery } from '../../services/charity/charity.service'
 import { useGetAllDonationsQuery } from '../../services/donation/donation_service';
 import { useGetAllFundraisessQuery } from '../../services/fundraise/fundraise.service';
 import { useGetAllEventsQuery } from '../../services/events/events_service';
+import generateReportService from '../../services/generateReport.service';
 
 export const Dashboard = () => {
 
@@ -21,6 +22,8 @@ export const Dashboard = () => {
     const [totalDonation, setTotalDonation] = useState(0)
     const [totalFundRaising, setTotalFundRaising] = useState(0)
     const [totalEvent, setTotalEvent] = useState(0)
+
+    const [generatingPdf, setGeneratingPdf] = useState(false)
 
     // get all users
     const { data, isError, isFetching, isLoading, isSuccess, error } = useGetAllUsersQuery()
@@ -39,15 +42,15 @@ export const Dashboard = () => {
     const allDonations = donationData?.data
 
     // get all fundraisings
-    const { data: fundData, isError: isFundError, isFetching: isFundFetching, isLoading: isFundLoading, isSuccess: isFundSuccess, error: fundError } =  useGetAllFundraisessQuery();
+    const { data: fundData, isError: isFundError, isFetching: isFundFetching, isLoading: isFundLoading, isSuccess: isFundSuccess, error: fundError } = useGetAllFundraisessQuery();
     const allFundrasings = fundData?.data
-    
+
 
     // get all events
 
-    const { data: eventData, isError: isEventError, isFetching: isEventFetching, isLoading: isEventLoading, isSuccess: isEventSuccess, error: eventError } =  useGetAllEventsQuery();
+    const { data: eventData, isError: isEventError, isFetching: isEventFetching, isLoading: isEventLoading, isSuccess: isEventSuccess, error: eventError } = useGetAllEventsQuery();
     const allEvents = eventData?.data
-    
+
 
 
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -75,10 +78,32 @@ export const Dashboard = () => {
 
 
 
+    const generateReport = () => {
+        setGeneratingPdf(true)
+        generateReportService.generateReport().then(resp => {
+            var blob = new Blob([resp.data], { type: "application/pdf" });
+            var objectUrl = URL.createObjectURL(blob);
+
+            window.open(objectUrl);
+            setGeneratingPdf(false)
+        })
+    }
+
 
     return (
         <Home>
             <div>
+            <div className='w-full flex items-center justify-end my-5'>
+                    <button
+                        onClick={generateReport}
+                        className="w-40 py-2 px-1 bg-gray-800 text-gray-100 text-md rounded"
+                    >
+                        {
+                            generatingPdf && (<Spin indicator={antIcon} />)
+                        }
+                        Generate Report
+                    </button>
+                </div>
                 <div className="grid grid:cols-1 lg:grid-cols-3 2xlgrid-cols-4 justify-between mt-4 gap-10">
                     {
                         isDonationError &&
@@ -140,7 +165,7 @@ export const Dashboard = () => {
                             alt=""
                         />
                         <div className="text-center">
-                        {
+                            {
                                 isFundLoading || isFundFetching ? (<Spin indicator={antIcon} />) : (
                                     <h1 className="text-4xl font-bold text-gray-800">{totalFundRaising}</h1>
                                 )
@@ -155,7 +180,7 @@ export const Dashboard = () => {
                             alt=""
                         />
                         <div className="text-center">
-                        {
+                            {
                                 isEventLoading || isEventFetching ? (<Spin indicator={antIcon} />) : (
                                     <h1 className="text-4xl font-bold text-gray-800">{totalEvent}</h1>
                                 )
@@ -204,6 +229,7 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+                
             </div>
         </Home>
     )
