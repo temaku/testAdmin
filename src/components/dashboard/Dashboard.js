@@ -106,7 +106,7 @@ export const Dashboard = () => {
                     <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
                         <img
                             className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2019/10/09/17/49/headphones-4537928_960_720.png"
+                            src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-charity-icon-in-trendy-style-isolated-background-png-image_4829259.jpg"
                             alt=""
                         />
                         <div className="text-center">
@@ -121,7 +121,7 @@ export const Dashboard = () => {
                     <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
                         <img
                             className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2018/12/04/18/04/media-3856203_960_720.png"
+                            src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-donation-box-icon-circle-png-image_5282238.jpg"
                             alt=""
                         />
                         <div className="text-center">
@@ -136,7 +136,7 @@ export const Dashboard = () => {
                     <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
                         <img
                             className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2017/07/31/16/13/coin-2558676_960_720.jpg"
+                            src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-finance-economy-tax-finance-png-image_5418199.jpg"
                             alt=""
                         />
                         <div className="text-center">
