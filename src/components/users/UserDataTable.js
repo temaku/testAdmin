@@ -121,16 +121,31 @@ export const UserDataTable = () => {
             dataIndex: "email"
         },
         {
-            key: "active",
-            title: "Status",
-            dataIndex: "active",
-            render:(active) => (
-                <div className='flex'>
-                    <p className='text-green-600'>Active</p>
-                </div>
-            )
-            
-        },
+          key: "status",
+          title: "Status",
+          dataIndex: "status",
+          render: (status) => (
+              <div className='uppercase'>
+                  {
+                      status === 'pending' ? (
+                          <span className='text-red-600'>
+                              {
+                                  status
+                              }
+                          </span>
+                      ): 
+                      (
+                          <span className='text-green-800'>
+                              {
+                                  status
+                              }
+                          </span>
+                      )
+
+                  }
+              </div>
+          )
+      },
         {
             key: "noOfDonation",
             title: "Donation",
@@ -216,15 +231,15 @@ export const UserDataTable = () => {
                     >
                         <Form.Item
                             label="Status"
-                            name="active"
+                            name="status"
 
                         >
 
                             <Select
                                 placeholder="Select status"
                                 allowClear >
-                                <Option value="true">Active</Option>
-                                <Option value="false">pending</Option>
+                                <Option value="Active">Active</Option>
+                                <Option value="pending">pending</Option>
                                
                             </Select>
 

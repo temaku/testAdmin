@@ -130,18 +130,18 @@ const AddEditUser = () => {
             </Form.Item>
             
             <Form.Item 
-              name="role" 
-              label="Role" 
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your role!",
-                },
-              ]}
-             >
-             <Input placeholder="role" />
-            </Form.Item>
-
+        label="Role"
+        name="role"
+        >
+           <Select
+              placeholder="Select the role of user"
+              allowClear >
+              <Option value="volunteers">Volunteers</Option>
+              <Option value="donor">Donor</Option>
+            
+            </Select>
+      
+        </Form.Item>
 
             <Form.Item >
               <Button
