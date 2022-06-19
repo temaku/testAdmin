@@ -1,5 +1,5 @@
 import { Table } from 'antd'
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import charityLogo from '../../assets/img/icon.png'
 import { LoadingOutlined } from '@ant-design/icons';
@@ -79,71 +79,6 @@ const GenerateReport = () => {
     }, [isSuccess, isCharitySuccess, isDonationSuccess, isFundSuccess, isEventSuccess])
 
 
-
-
-    // const resportData = [
-    //     {
-    //         totalUsers: 120,
-    //         totalCharity: 20000,
-    //         totalDonation: 40000,
-    //         totalFundraising: 90000000,
-    //         totalEvents: 500
-    //     },
-    //     {
-    //         totalUsers: 120,
-    //         totalCharity: 20000,
-    //         totalDonation: 40000,
-    //         totalFundraising: 90000000,
-    //         totalEvents: 500
-    //     },
-    //     {
-    //         totalUsers: 120,
-    //         totalCharity: 20000,
-    //         totalDonation: 40000,
-    //         totalFundraising: 90000000,
-    //         totalEvents: 500
-    //     },
-    //     {
-    //         totalUsers: 120,
-    //         totalCharity: 20000,
-    //         totalDonation: 40000,
-    //         totalFundraising: 90000000,
-    //         totalEvents: 500
-    //     }
-    // ]
-
-    // const columns = [
-    //     {
-    //         key: "0",
-    //         title: "Total Users",
-    //         dataIndex: "totalUsers"
-    //     },
-    //     {
-    //         key: "1",
-    //         title: "Charity Count",
-    //         dataIndex: "totalCharity"
-    //     },
-
-    //     {
-    //         key: "2",
-    //         title: "Total Donation",
-    //         dataIndex: "totalDonation"
-    //     },
-    //     {
-    //         key: "3",
-    //         title: "Total Fundraising",
-    //         dataIndex: "totalFundraising"
-    //     },
-
-    //     {
-    //         key: "4",
-    //         title: "Events Occured",
-    //         dataIndex: "totalEvents"
-    //     },
-    // ]
-
-
-
     return (
         <div className='flex flex-col'>
             <div className='flex flex-col relative items-center justify-center w-full'>
@@ -163,152 +98,141 @@ const GenerateReport = () => {
                         best to successfully combine, arrange and analyze the following data.
                     </p>
                 </div>
-            {/* bring the table here */}
-            {/* you can design your html here */}
-            {/* It's all about how you want your data to appear */}
+              
 
-            {/* <div className='mt-8 w-4/5 '>
-                <Table
-                    dataSource={resportData}
-                    columns={columns}
-                    pagination={true}
-                    loading={false}
-                    rowKey="id" />
-            </div> */}
+                <div>
+                    <div className="grid grid:cols-1 lg:grid-cols-3 2xlgrid-cols-4 justify-between mt-4 gap-10">
+                        {
+                            isDonationError &&
+                            <div className='flex mt-3'>
+                                <p className='text-red-500 text-md font-bold mx-3'>
+                                    {donationError?.name || donationError?.status}
+                                </p>
+                                <p className='text-red-500 text-md font-bold'>
+                                    {donationError?.message || donationError?.data.message}
+                                </p>
+                            </div>
+                        }
+                        <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
+                            <img src="https://i.imgur.com/VHc5SJE.png" alt="" />
+                            <div className="text-center">
+                                {
+                                    isLoading || isFetching ? (<Spin indicator={antIcon} />) : (
+                                        <h1 className="text-4xl font-bold text-gray-800">{totalUsers}</h1>
+                                    )
+                                }
 
-<div>
-                <div className="grid grid:cols-1 lg:grid-cols-3 2xlgrid-cols-4 justify-between mt-4 gap-10">
-                    {
-                        isDonationError &&
-                        <div className='flex mt-3'>
-                            <p className='text-red-500 text-md font-bold mx-3'>
-                                {donationError?.name || donationError?.status}
-                            </p>
-                            <p className='text-red-500 text-md font-bold'>
-                                {donationError?.message || donationError?.data.message}
-                            </p>
-                        </div>
-                    }
-                    <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
-                        <img src="https://i.imgur.com/VHc5SJE.png" alt="" />
-                        <div className="text-center">
-                            {
-                                isLoading || isFetching ? (<Spin indicator={antIcon} />) : (
-                                    <h1 className="text-4xl font-bold text-gray-800">{totalUsers}</h1>
-                                )
-                            }
-
-                            <span className="text-gray-500">Users</span>
-                        </div>
-                    </div>
-                    <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
-                        <img
-                            className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2019/10/09/17/49/headphones-4537928_960_720.png"
-                            alt=""
-                        />
-                        <div className="text-center">
-                            {
-                                isCharityLoading || isCHarityFetching ? (<Spin indicator={antIcon} />) : (
-                                    <h1 className="text-4xl font-bold text-gray-800">{totalCharity}</h1>
-                                )
-                            }
-                            <span className="text-gray-500">Charity</span>
-                        </div>
-                    </div>
-                    <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
-                        <img
-                            className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2018/12/04/18/04/media-3856203_960_720.png"
-                            alt=""
-                        />
-                        <div className="text-center">
-                            {
-                                isDonationLoading || isDonationFetching ? (<Spin indicator={antIcon} />) : (
-                                    <h1 className="text-4xl font-bold text-gray-800">{totalDonation}</h1>
-                                )
-                            }
-                            <span className="text-gray-500">Donations</span>
-                        </div>
-                    </div>
-                    <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
-                        <img
-                            className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2017/07/31/16/13/coin-2558676_960_720.jpg"
-                            alt=""
-                        />
-                        <div className="text-center">
-                            {
-                                isFundLoading || isFundFetching ? (<Spin indicator={antIcon} />) : (
-                                    <h1 className="text-4xl font-bold text-gray-800">{totalFundRaising}</h1>
-                                )
-                            }
-                            <span className="text-gray-500">Fundraising</span>
-                        </div>
-                    </div>
-                    <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
-                        <img
-                            className="w-20 h-20"
-                            src="https://cdn.pixabay.com/photo/2013/04/01/09/18/calendar-98483_960_720.png"
-                            alt=""
-                        />
-                        <div className="text-center">
-                            {
-                                isEventLoading || isEventFetching ? (<Spin indicator={antIcon} />) : (
-                                    <h1 className="text-4xl font-bold text-gray-800">{totalEvent}</h1>
-                                )
-                            }
-                            <span className="text-gray-500"> Events</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex space-x-4">
-                    <div className="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
-                        <h1 className="text-xl font-bold text-gray-800 mt-4">
-                            Today’s Status
-                        </h1>
-                        <div className="flex justify-between space-x-4 text-center mt-6">
-                            <div className="bg-indigo-50 rounded-xl p-10">
-                                <h3>8.7K</h3>
-                                <span>Total Present</span>
+                                <span className="text-gray-500">Users</span>
                             </div>
-                            <div className="bg-indigo-50 rounded-xl p-10">
-                                <h3>99</h3>
-                                <span>Registrations</span>
+                        </div>
+                        <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
+                            <img
+                                className="w-20 h-20"
+                                src="https://cdn.pixabay.com/photo/2019/10/09/17/49/headphones-4537928_960_720.png"
+                                alt=""
+                            />
+                            <div className="text-center">
+                                {
+                                    isCharityLoading || isCHarityFetching ? (<Spin indicator={antIcon} />) : (
+                                        <h1 className="text-4xl font-bold text-gray-800">{totalCharity}</h1>
+                                    )
+                                }
+                                <span className="text-gray-500">Charity</span>
                             </div>
-                            <div className="bg-indigo-50 rounded-xl p-10">
-                                <h3>30</h3>
-                                <span>Totals Session</span>
+                        </div>
+                        <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
+                            <img
+                                className="w-20 h-20"
+                                src="https://cdn.pixabay.com/photo/2018/12/04/18/04/media-3856203_960_720.png"
+                                alt=""
+                            />
+                            <div className="text-center">
+                                {
+                                    isDonationLoading || isDonationFetching ? (<Spin indicator={antIcon} />) : (
+                                        <h1 className="text-4xl font-bold text-gray-800">{totalDonation}</h1>
+                                    )
+                                }
+                                <span className="text-gray-500">Donations</span>
+                            </div>
+                        </div>
+                        <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
+                            <img
+                                className="w-20 h-20"
+                                src="https://cdn.pixabay.com/photo/2017/07/31/16/13/coin-2558676_960_720.jpg"
+                                alt=""
+                            />
+                            <div className="text-center">
+                                {
+                                    isFundLoading || isFundFetching ? (<Spin indicator={antIcon} />) : (
+                                        <h1 className="text-4xl font-bold text-gray-800">{totalFundRaising}</h1>
+                                    )
+                                }
+                                <span className="text-gray-500">Fundraising</span>
+                            </div>
+                        </div>
+                        <div className="bg-white w-full rounded-xl shadow-lg flex items-center justify-around">
+                            <img
+                                className="w-20 h-20"
+                                src="https://cdn.pixabay.com/photo/2013/04/01/09/18/calendar-98483_960_720.png"
+                                alt=""
+                            />
+                            <div className="text-center">
+                                {
+                                    isEventLoading || isEventFetching ? (<Spin indicator={antIcon} />) : (
+                                        <h1 className="text-4xl font-bold text-gray-800">{totalEvent}</h1>
+                                    )
+                                }
+                                <span className="text-gray-500"> Events</span>
                             </div>
                         </div>
                     </div>
-                    <div className="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
-                        <h1 className="text-xl font-bold text-gray-800 mt-4">
-                            Today’s Status
-                        </h1>
-                        <div className="flex justify-between space-x-4 text-center mt-6">
-                            <div className="bg-indigo-50 rounded-xl p-10">
-                                <h3>8.7K</h3>
-                                <span>Total Present</span>
+                    <div className="flex space-x-4">
+                        <div className="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+                            <h1 className="text-xl font-bold text-gray-800 mt-4">
+                                Today’s Status
+                            </h1>
+                            <div className="flex justify-between space-x-4 text-center mt-6">
+                                <div className="bg-indigo-50 rounded-xl p-10">
+                                    <h3>8.7K</h3>
+                                    <span>Total Present</span>
+                                </div>
+                                <div className="bg-indigo-50 rounded-xl p-10">
+                                    <h3>99</h3>
+                                    <span>Registrations</span>
+                                </div>
+                                <div className="bg-indigo-50 rounded-xl p-10">
+                                    <h3>30</h3>
+                                    <span>Totals Session</span>
+                                </div>
                             </div>
-                            <div className="bg-indigo-50 rounded-xl p-10">
-                                <h3>99</h3>
-                                <span>Registrations</span>
-                            </div>
-                            <div className="bg-indigo-50 rounded-xl p-10">
-                                <h3>30</h3>
-                                <span>Totals Session</span>
+                        </div>
+                        <div className="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+                            <h1 className="text-xl font-bold text-gray-800 mt-4">
+                                Today’s Status
+                            </h1>
+                            <div className="flex justify-between space-x-4 text-center mt-6">
+                                <div className="bg-indigo-50 rounded-xl p-10">
+                                    <h3>8.7K</h3>
+                                    <span>Total Present</span>
+                                </div>
+                                <div className="bg-indigo-50 rounded-xl p-10">
+                                    <h3>99</h3>
+                                    <span>Registrations</span>
+                                </div>
+                                <div className="bg-indigo-50 rounded-xl p-10">
+                                    <h3>30</h3>
+                                    <span>Totals Session</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
             </div>
 
             <div className='my-10 w-full flex items-center justify-end'>
-            <div className='w-1/5 flex flex-col text-right pr-10'>
+                <div className='w-1/5 flex flex-col text-right pr-10'>
                     <p>_______________________________</p>
                     <p className='-mt-4'>Director Signature</p>
                 </div>
